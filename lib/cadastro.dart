@@ -43,6 +43,24 @@ class _CadastroState extends State<Cadastro> {
                   onChanged: controller.client.changeName,
                 );
               },
+            ),
+            SizedBox(height: 20),
+            Observer(
+              builder: (context) {
+                return _textField(
+                  errorText: controller.validateEmail,
+                  labelText: 'email',
+                  onChanged: controller.client.changeEmail,
+                );
+              },
+            ),
+            SizedBox(height: 50),
+            Observer(
+              builder: (_) {
+                return ElevatedButton(
+                    onPressed: controller.isValid ? () {} : null,
+                    child: Text('Salvar'));
+              },
             )
           ],
         ),
