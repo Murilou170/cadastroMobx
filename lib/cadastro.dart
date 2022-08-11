@@ -1,4 +1,7 @@
+import 'package:cadastromobx/controller.dart';
+import 'package:cadastromobx/models/client.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 
 class Cadastro extends StatefulWidget {
   const Cadastro({Key? key}) : super(key: key);
@@ -8,6 +11,20 @@ class Cadastro extends StatefulWidget {
 }
 
 class _CadastroState extends State<Cadastro> {
+  final client = Client();
+  final controller = Controller();
+
+  _textField({String? labelText, onChanged, String Function()?, errorText}) {
+    return TextField(
+      onChanged: onChanged,
+      decoration: InputDecoration(
+        border: OutlineInputBorder(),
+        labelText: labelText,
+        errorText: errorText == null ? null : errorText(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +35,15 @@ class _CadastroState extends State<Cadastro> {
         padding: EdgeInsets.all(10.0),
         child: Column(
           children: [
-            
+            Observer(
+              builder: (context) {
+                return _textField(
+                  errorText: controller.validateName,
+                  labelText: 'name',
+                  onChanged: controller.client.changeName,
+                );
+              },
+            )
           ],
         ),
       ),

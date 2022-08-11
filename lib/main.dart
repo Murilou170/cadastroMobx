@@ -12,7 +12,7 @@ class AppWidget extends StatelessWidget {
     return MaterialApp(
       title: 'Mobx Flutter',
       theme: ThemeData(
-        primarySwatch: Colors.orange,
+        primarySwatch: Colors.blue,
       ),
       home: Cadastro(),
     );
